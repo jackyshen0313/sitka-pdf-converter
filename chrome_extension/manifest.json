@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Sitka PDF Converter",
+  "version": "0.1.0",
+  "description": "Prepare DRM-free EPUB/MOBI files for Chrome Print to PDF using a Sitka-styled reading layout.",
+  "action": {
+    "default_title": "Sitka PDF Converter",
+    "default_popup": "popup.html"
+  }
+}

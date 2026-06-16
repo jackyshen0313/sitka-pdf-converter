@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sitka PDF Converter</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main>
+    <h1>Sitka PDF Converter</h1>
+    <p>Pick a DRM-free EPUB or MOBI. Open print view. Save as PDF from Chrome.</p>
+
+    <label>
+      Book file
+      <input id="ebookFile" type="file" accept=".epub,.mobi,application/epub+zip,application/x-mobipocket-ebook">
+    </label>
+
+    <details>
+      <summary>Style</summary>
+
+      <label>
+        Body font
+        <select id="font">
+          <optgroup label="Sitka">
+            <option>Sitka Text</option>
+            <option>Sitka Heading</option>
+            <option>Sitka Small</option>
+            <option>Sitka Display</option>
+          </optgroup>
+          <optgroup label="Serif">
+            <option>Georgia</option>
+            <option>Times New Roman</option>
+            <option>Cambria</option>
+            <option>Garamond</option>
+            <option>Palatino Linotype</option>
+          </optgroup>
+          <optgroup label="Sans serif">
+            <option>Arial</option>
+            <option>Segoe UI</option>
+            <option>Calibri</option>
+            <option>Verdana</option>
+            <option>Tahoma</option>
+          </optgroup>
+          <optgroup label="CJK">
+            <option>Microsoft YaHei</option>
+            <option>SimSun</option>
+            <option>Noto Serif CJK SC</option>
+            <option>Noto Sans CJK SC</option>
+          </optgroup>
+        </select>
+      </label>
+
+      <label>
+        Heading font
+        <select id="headingFont">
+          <option>Sitka Heading</option>
+          <option>Sitka Text</option>
+          <option>Georgia</option>
+          <option>Times New Roman</option>
+          <option>Cambria</option>
+          <option>Arial</option>
+          <option>Segoe UI</option>
+          <option>Microsoft YaHei</option>
+          <option>Noto Serif CJK SC</option>
+        </select>
+      </label>
+
+      <div class="grid">
+        <label>Paper
+          <select id="paperSize">
+            <option value="a4">A4</option>
+            <option value="a5">A5</option>
+            <option value="letter">Letter</option>
+            <option value="legal">Legal</option>
+            <option value="b5">B5</option>
+          </select>
+        </label>
+        <label>Font size
+          <input id="fontSize" type="number" min="8" max="32" value="16">
+        </label>
+        <label>Margin pt
+          <input id="margin" type="number" min="0" max="144" value="36">
+        </label>
+        <label>Line height
+          <input id="lineHeight" value="1.35">
+        </label>
+      </div>
+    </details>
+
+    <button id="openPrintViewButton" type="button">Open print view</button>
+    <pre id="status" aria-live="polite">Ready.</pre>
+  </main>
+  <script src="converter_core.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
