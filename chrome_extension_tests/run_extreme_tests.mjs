@@ -308,6 +308,20 @@ test("PalmDOC-compressed MOBI converts", async () => {
   assert.match(result.html, /A Hi/);
 });
 
+test("PalmDOC MOBI with trailing record byte converts", async () => {
+  const compressedRecord = concat(
+    bytes("<html><body><p>A"),
+    new Uint8Array([0xc8]),
+    bytes("i</p></body></html>"),
+    new Uint8Array([0x80])
+  );
+  const result = await core.convertFileToPrintableHtml(
+    fileLike("trailing.mobi", createMobi({ compression: 2, textBytes: compressedRecord, textLength: 36 })),
+    {}
+  );
+  assert.match(result.html, /A Hi/);
+});
+
 test("encrypted MOBI is rejected", async () => {
   await assertRejectsMessage(
     () => core.convertFileToPrintableHtml(fileLike("encrypted.mobi", createMobi({ encryption: 1 })), {}),

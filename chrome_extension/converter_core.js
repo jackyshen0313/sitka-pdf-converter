@@ -329,7 +329,18 @@
 
   function decompressMobiTextRecord(record, compression) {
     if (compression === 1) return record;
-    if (compression === 2) return decompressPalmDocRecord(record);
+    if (compression === 2) {
+      let lastError;
+      const maxTrim = Math.min(128, Math.max(0, record.length - 1));
+      for (let trim = 0; trim <= maxTrim; trim += 1) {
+        try {
+          return decompressPalmDocRecord(trim ? record.slice(0, record.length - trim) : record);
+        } catch (error) {
+          lastError = error;
+        }
+      }
+      throw lastError;
+    }
     if (compression === 17480) {
       throw new UserFacingError("HUFF/CDIC-compressed MOBI files are not supported in the browser-only build. Convert the book to EPUB first.");
     }
